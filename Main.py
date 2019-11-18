@@ -21,8 +21,8 @@ optionMenu.add_command(label='Exit', command=mainWindow.destroy)        # This a
 buttonFrame = tk.Frame (mainWindow)     # this adds a frame that contains the liquid and break type option buttons
 buttonFrame.pack()      # This unpacked the buttonFrame
 
-wheelFrame = tk.Frame (mainWindow)
-wheelFrame.pack()
+wheelButtonFrame = tk.Frame (mainWindow)
+wheelButtonFrame.pack()
 
 syringeFrame = tk.Frame (mainWindow)        #this is the frame that will contain the syringe model
 syringeFrame.pack(anchor=tk.E)     # This unpacks the syringeFrame
