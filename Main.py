@@ -1,12 +1,19 @@
 import tkinter as tk
+import Syringe
 
-# JP BRANCH HERE
+# Simple function that switches the button menu from Liqud buttons and Brake buttons (command located in switchButton)
+def switchB():
+    brakeButtonFrame.tkraise()
+
+def switchL():
+    liquidButtonFrame.tkraise()
 
 # mainWindow configurations
 mainWindow = tk.Tk()    # initialized window in mainWindow variable
 mainWindow.title("Speed Wheel")     # named the program Speed Wheel
 mainWindow.configure(background="#121212")      # made mainWindow have a black background
-
+mainWindow.geometry("1280x720") # This sets the window to be 720p
+mainWindow.resizable(0, 0) # This makes the window not resizable
 
 # mainMenu configurations
 mainMenu = tk.Menu(mainWindow)     # set a new menu tab named mainMenu to mainWindow
@@ -20,13 +27,75 @@ optionMenu.add_command(label='Exit', command=mainWindow.destroy)        # This a
 
 
 # Frame configurations
-buttonFrame = tk.Frame(mainWindow)     # this adds a frame that contains the liquid and break type option buttons
-buttonFrame.pack()      # This unpacked the buttonFrame
 
-wheelButtonFrame = tk.Frame(mainWindow)
-wheelButtonFrame.pack()
+syringeFrame = tk.Frame(mainWindow)    # This frame contains the syringe model
+syringeFrame.pack(side=tk.RIGHT)    # This unpacks the main syringe frame
 
-syringeFrame = tk.Frame(mainWindow)  # This is the frame that will contain the syringe model
-syringeFrame.pack(anchor=tk.E)  # This unpacks the syringeFrame
+interactFrame = tk.Frame(mainWindow)    # This frame is a parent frame and contains the buttons and the wheel model
+interactFrame.pack(side=tk.RIGHT)   # This unpacks the interact parent frame
 
-mainWindow.mainloop()  # set the mainWindow on the loop
+buttonFrame = tk.Frame(interactFrame)  # This frame is a child frame and it contains the buttons
+buttonFrame.pack()  # This unpacks the button frame
+
+brakeButtonFrame = tk.Frame(buttonFrame)   # This frame contains the buttons for the brake feature
+brakeButtonFrame.grid(row=0, column=0)  # This unpacks the brake button frame
+
+liquidButtonFrame = tk.Frame(buttonFrame)  # This frame contains the buttons for the iquids
+liquidButtonFrame.grid(row=0, column=0) # This unpacks the liquid button frame
+
+
+wheelFrame = tk.Frame(interactFrame)   # This frame contains the wheel model
+wheelFrame.pack()   # This unpacks the wheel model frame
+
+syringeCanvas = tk.Canvas(syringeFrame, height=700, width=400, bd=0)     # This creates a new canvas that contains the syringe model
+syringeCanvas.pack()        # This unpacks the syringe model
+
+wheelCanvas = tk.Canvas(wheelFrame, height=650, width=900)
+wheelCanvas.pack()
+
+
+# Class properties
+head = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, fill="white")  # This calls the syringe class through the Syringe.py file and creates the pump model in the syringeCanvas
+
+Syringe.syringe(syringeCanvas)      # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
+
+
+def move():
+    syringeCanvas.move(head, 0, 10)
+
+# Liquid Button Properties
+syrupButton = tk.Button(liquidButtonFrame, width=10, text="Syrup", command=move)
+syrupButton.pack(side=tk.LEFT)
+
+oilButton = tk.Button(liquidButtonFrame, width=10, text="Motor Oil")
+oilButton.pack(side=tk.LEFT)
+
+waterButton = tk.Button(liquidButtonFrame, width=10, text="Water")
+waterButton.pack(side=tk.LEFT)
+
+alcoholButton = tk.Button(liquidButtonFrame, width=10, text="Alcohol")
+alcoholButton.pack(side=tk.LEFT)
+
+switchButtonL = tk.Button(liquidButtonFrame, width=10, text="Switch", command=switchB)
+switchButtonL.pack(side=tk.LEFT)
+
+
+# Brake Button Properties
+sandpaperButton = tk.Button(brakeButtonFrame, width=10, text="Sand Paper")
+sandpaperButton.pack(side=tk.LEFT)
+
+towelButton = tk.Button(brakeButtonFrame, width=10, text="Towel")
+towelButton.pack(side=tk.LEFT)
+
+spongeButton = tk.Button(brakeButtonFrame, width=10, text="Sponge")
+spongeButton.pack(side=tk.LEFT)
+
+foilButton = tk.Button(brakeButtonFrame, width=10, text="Aluminum Foil")
+foilButton.pack(side=tk.LEFT)
+
+switchButtonB = tk.Button(brakeButtonFrame, width=10, text="Switch", command=switchL)
+switchButtonB.pack(side=tk.LEFT)
+
+
+
+mainWindow.mainloop()  # Set the mainWindow on the loop
