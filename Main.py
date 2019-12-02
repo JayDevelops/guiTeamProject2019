@@ -61,7 +61,8 @@ Syringe.syringe(syringeCanvas)      # This calls the syringe class through the S
 
 
 def move ():
-    syringeCanvas.move(head, 0, 10)
+    syringeCanvas.move(head, 0, 5)
+    syringeCanvas.after(100, move)
 
 # Liquid Button Properties
 syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup", command=move)
