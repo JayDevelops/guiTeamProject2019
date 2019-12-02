@@ -50,12 +50,21 @@ wheelFrame.pack()   # This unpacks the wheel model frame
 syringeCanvas = tk.Canvas(syringeFrame, height=700, width=400, bd=0)     # This creates a new canvas that contains the syringe model
 syringeCanvas.pack()        # This unpacks the syringe model
 
+wheelCanvas = tk.Canvas (wheelFrame, height=650, width=900)
+wheelCanvas.pack()
+
+
+# Class properties
+head = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, fill="white") # This calls the syringe class through the Syringe.py file and creates the pump model in the syringeCanvas
 
 Syringe.syringe(syringeCanvas)      # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
 
 
+def move ():
+    syringeCanvas.move(head, 0, 10)
+
 # Liquid Button Properties
-syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup")
+syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup", command=move)
 syrupButton.pack(side=tk.LEFT)
 
 oilButton = tk.Button (liquidButtonFrame, width=10, text="Motor Oil")
