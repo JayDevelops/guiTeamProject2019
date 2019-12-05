@@ -71,7 +71,11 @@ def pumpMove():
 # limit cordinate [10.0, 365.0, 150.0, 385.0]
 
 # Liquid Button Properties
-syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup", command=pumpMove)
+
+pumpButtonL = tk.Button (liquidButtonFrame, width=10, text="Pump", command=pumpMove)
+pumpButtonL.pack(side=tk.LEFT)
+
+syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup")
 syrupButton.pack(side=tk.LEFT)
 
 oilButton = tk.Button (liquidButtonFrame, width=10, text="Motor Oil")
@@ -88,6 +92,10 @@ switchButtonL.pack(side=tk.LEFT)
 
 
 # Brake Button Properties
+
+pumpButtonB = tk.Button (brakeButtonFrame, width=10, text="Pump", command=pumpMove)
+pumpButtonB.pack(side=tk.LEFT)
+
 sandpaperButton = tk.Button (brakeButtonFrame, width=10, text="Sand Paper")
 sandpaperButton.pack(side=tk.LEFT)
 
