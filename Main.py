@@ -1,6 +1,19 @@
 import tkinter as tk
-import time
 import Syringe
+import Liquid
+
+
+# colors for liquids and brake types
+oilColor = "#663300"
+syrupColor = "#331a00"
+waterColor = "#e6ffff"
+alcoholColor = "#f2f2f2"
+
+sandPaperColor = "#cc2900"
+towelColor = "#ffffff"
+spongeColor = "#e6e600"
+foilColor = "#b3b3b3"
+
 
 # Simple function that switches the button menu from Liqud buttons and Brake buttons (command located in switchButton)
 def switchB():
@@ -60,7 +73,11 @@ backLimit = syringeCanvas.create_rectangle(10, 365, 150, 385, width=1, outline= 
 frontLimit = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, outline= "#121212", fill="#121212")
 
 # Class properties
+
 pump = Syringe.pump(syringeCanvas, backLimit, frontLimit)   # This creates a pump object and stores it into pump 
+
+
+liquid = Liquid.liquid(syringeCanvas, waterColor, pump)
 
 syringe = Syringe.syringe(syringeCanvas)      # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
 
@@ -68,11 +85,15 @@ syringe = Syringe.syringe(syringeCanvas)      # This calls the syringe class thr
 # user defined functions for the tkinter buttons
 def pumpMove():
     pump.move()
+    liquid.move()
 
 def reset():
     pump.reset()
+    liquid.reset()
+
 
 # limit cordinate [10.0, 365.0, 150.0, 385.0]
+
 
 # Liquid Button Properties
 pumpResetButtonL = tk.Button (liquidButtonFrame, width=10, text="Reset", command=reset)

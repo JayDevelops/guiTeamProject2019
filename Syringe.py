@@ -44,3 +44,15 @@ class pump:
                 self.canvas.after_cancel(pumpMove)
         else:
             pass
+    
+    def getHead(self):
+        headPosition = self.canvas.coords(self.head)
+        return headPosition
+
+    def getLimit(self):
+        limitPosition = self.canvas.coords(self.limit)
+        return limitPosition
+
+    def getLimit2(self):
+        limit2Position = self.canvas.coords(self.limit2)
+        return limit2Position
