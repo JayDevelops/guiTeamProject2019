@@ -10,12 +10,14 @@ class syringe:
         self.line4 = canvas.create_line(70, 320, 150, 320, width=3)
 
 class pump:
-    def __init__(self, canvas, limit):
+    def __init__(self, canvas, limit, limit2):
         self.canvas = canvas
         self.limit = limit
+        self.limit2 = limit2
         self.head = canvas.create_rectangle(10, 10, 150, 30, width=1, fill="white")
         self.arm = canvas.create_rectangle(70, 30, 90, 404, width=1, fill="white")
         self.handle = canvas.create_rectangle(10, 404, 150, 424, width=1, fill="white")
+
     def move(self):
         if (not(self.canvas.coords(self.head) == self.canvas.coords(self.limit))):
             pumpMove = self.canvas.after(10,self.move)
@@ -28,4 +30,16 @@ class pump:
                 self.canvas.after_cancel(pumpMove)
         else:
             pass
-
+    
+    def reset(self):
+        if (not(self.canvas.coords(self.head) == self.canvas.coords(self.limit2))):
+            pumpMove = self.canvas.after(10,self.reset)
+            self.canvas.move(self.head, 0, -5)
+            self.canvas.move(self.arm, 0, -5)
+            self.canvas.move(self.handle, 0, -5)
+            startPosition = self.canvas.coords(self.head)
+            endPosition = self.canvas.coords(self.limit2)
+            if (startPosition == endPosition):
+                self.canvas.after_cancel(pumpMove)
+        else:
+            pass

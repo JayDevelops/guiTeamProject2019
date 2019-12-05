@@ -56,10 +56,11 @@ wheelCanvas.pack()
 
 
 # This is the limit that the pump will go up to but not pass
-limit = syringeCanvas.create_rectangle(10, 365, 150, 385, width=1, outline= "white", fill="white")
+backLimit = syringeCanvas.create_rectangle(10, 365, 150, 385, width=1, outline= "white", fill="white")
+frontLimit = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, outline= "white", fill="white")
 
 # Class properties
-pump = Syringe.pump(syringeCanvas, limit)   # This creates a pump object and stores it into pump 
+pump = Syringe.pump(syringeCanvas, backLimit, frontLimit)   # This creates a pump object and stores it into pump 
 
 syringe = Syringe.syringe(syringeCanvas)      # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
 
@@ -68,9 +69,14 @@ syringe = Syringe.syringe(syringeCanvas)      # This calls the syringe class thr
 def pumpMove():
     pump.move()
 
+def reset():
+    pump.reset()
+
 # limit cordinate [10.0, 365.0, 150.0, 385.0]
 
 # Liquid Button Properties
+pumpResetButtonL = tk.Button (liquidButtonFrame, width=10, text="Reset", command=reset)
+pumpResetButtonL.pack(side=tk.LEFT)
 
 pumpButtonL = tk.Button (liquidButtonFrame, width=10, text="Pump", command=pumpMove)
 pumpButtonL.pack(side=tk.LEFT)
@@ -92,6 +98,8 @@ switchButtonL.pack(side=tk.LEFT)
 
 
 # Brake Button Properties
+pumpResetButtonB = tk.Button (brakeButtonFrame, width=10, text="Reset", command=reset)
+pumpResetButtonB.pack(side=tk.LEFT)
 
 pumpButtonB = tk.Button (brakeButtonFrame, width=10, text="Pump", command=pumpMove)
 pumpButtonB.pack(side=tk.LEFT)
