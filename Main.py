@@ -56,17 +56,21 @@ wheelCanvas.pack()
 
 
 # Class properties
+limit = syringeCanvas.create_rectangle(10, 365, 150, 385, width=1, outline= "white", fill="white")
 head = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, fill="white") # This calls the syringe class through the Syringe.py file and creates the pump model in the syringeCanvas
+
 
 Syringe.syringe(syringeCanvas)      # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
 
 def move():
-    i = 0
-    while (i < 5):
-        syringeCanvas.move(head, 0, 5)
-        time.sleep(1)
-        i += 1
+    pumpMove = syringeCanvas.after(100,move)
+    syringeCanvas.move(head, 0, 5)
+    startPosition = syringeCanvas.coords(head)
+    endPosition = syringeCanvas.coords(limit)
+    if (startPosition == endPosition):
+        syringeCanvas.after_cancel(pumpMove)
 
+# [10.0, 365.0, 150.0, 385.0]
 
 # Liquid Button Properties
 syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup", command=move)
