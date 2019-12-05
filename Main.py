@@ -48,16 +48,16 @@ liquidButtonFrame.grid(row=0, column=0) # This unpacks the liquid button frame
 wheelFrame = tk.Frame (interactFrame)   # This frame contains the wheel model
 wheelFrame.pack()   # This unpacks the wheel model frame
 
-syringeCanvas = tk.Canvas(syringeFrame, height=700, width=400, bd=0)     # This creates a new canvas that contains the syringe model
+syringeCanvas = tk.Canvas(syringeFrame, height=700, width=400, bd=0, bg="#121212")     # This creates a new canvas that contains the syringe model
 syringeCanvas.pack()        # This unpacks the syringe model
 
-wheelCanvas = tk.Canvas (wheelFrame, height=650, width=900)
+wheelCanvas = tk.Canvas (wheelFrame, height=650, width=900, bg="#121212")
 wheelCanvas.pack()
 
 
 # This is the limit that the pump will go up to but not pass
-backLimit = syringeCanvas.create_rectangle(10, 365, 150, 385, width=1, outline= "white", fill="white")
-frontLimit = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, outline= "white", fill="white")
+backLimit = syringeCanvas.create_rectangle(10, 365, 150, 385, width=1, outline= "#121212", fill="#121212")
+frontLimit = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, outline= "#121212", fill="#121212")
 
 # Class properties
 pump = Syringe.pump(syringeCanvas, backLimit, frontLimit)   # This creates a pump object and stores it into pump 

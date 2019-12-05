@@ -14,6 +14,7 @@ class pump:
         self.canvas = canvas
         self.limit = limit
         self.limit2 = limit2
+        self.background = canvas.create_rectangle(10, 10, 150, 400, width=4, fill="white")
         self.head = canvas.create_rectangle(10, 10, 150, 30, width=1, fill="white")
         self.arm = canvas.create_rectangle(70, 30, 90, 404, width=1, fill="white")
         self.handle = canvas.create_rectangle(10, 404, 150, 424, width=1, fill="white")
