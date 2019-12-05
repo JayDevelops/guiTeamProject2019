@@ -1,4 +1,5 @@
 import tkinter as tk
+import time
 import Syringe
 
 # Simple function that switches the button menu from Liqud buttons and Brake buttons (command located in switchButton)
@@ -59,10 +60,13 @@ head = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, fill="white") # 
 
 Syringe.syringe(syringeCanvas)      # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
 
+def move():
+    i = 0
+    while (i < 5):
+        syringeCanvas.move(head, 0, 5)
+        time.sleep(1)
+        i += 1
 
-def move ():
-    syringeCanvas.move(head, 0, 5)
-    syringeCanvas.after(100, move)
 
 # Liquid Button Properties
 syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup", command=move)
