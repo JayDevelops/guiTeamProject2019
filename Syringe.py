@@ -1,5 +1,6 @@
-import math
-class Syringe:
+import tkinter as tk
+
+class syringe:
     def __init__(self, canvas):
         self.canvas = canvas
         self.model = canvas.create_rectangle(10, 10, 150, 400, width=4)
@@ -8,21 +9,50 @@ class Syringe:
         self.line3 = canvas.create_line(70, 240, 150, 240, width=3)
         self.line4 = canvas.create_line(70, 320, 150, 320, width=3)
 
-class Pump:
-    def __init__(self, canvas):
-        # Initializes the canvas object here
+class pump:
+    def __init__(self, canvas, limit, limit2):
         self.canvas = canvas
+        self.limit = limit
+        self.limit2 = limit2
+        self.background = canvas.create_rectangle(10, 10, 150, 400, width=4, fill="white")
         self.head = canvas.create_rectangle(10, 10, 150, 30, width=1, fill="white")
+        self.arm = canvas.create_rectangle(70, 30, 90, 404, width=1, fill="white")
+        self.handle = canvas.create_rectangle(10, 404, 150, 424, width=1, fill="white")
 
-def calculateDistance(firstXPoint, secondXPoint, firstYPoint, secondYPoint):
-    xOne = firstXPoint
-    xTwo = secondXPoint
+    def move(self):
+        if (not(self.canvas.coords(self.head) == self.canvas.coords(self.limit))):
+            pumpMove = self.canvas.after(10,self.move)
+            self.canvas.move(self.head, 0, 5)
+            self.canvas.move(self.arm, 0, 5)
+            self.canvas.move(self.handle, 0, 5)
+            startPosition = self.canvas.coords(self.head)
+            endPosition = self.canvas.coords(self.limit)
+            if (startPosition == endPosition):
+                self.canvas.after_cancel(pumpMove)
+        else:
+            pass
+    
+    def reset(self):
+        if (not(self.canvas.coords(self.head) == self.canvas.coords(self.limit2))):
+            pumpMove = self.canvas.after(10,self.reset)
+            self.canvas.move(self.head, 0, -5)
+            self.canvas.move(self.arm, 0, -5)
+            self.canvas.move(self.handle, 0, -5)
+            startPosition = self.canvas.coords(self.head)
+            endPosition = self.canvas.coords(self.limit2)
+            if (startPosition == endPosition):
+                self.canvas.after_cancel(pumpMove)
+        else:
+            pass
+    
+    def getHead(self):
+        headPosition = self.canvas.coords(self.head)
+        return headPosition
 
-    yOne = firstYPoint
-    yTwo = secondXPoint
-    firstMath = ((xTwo - xOne)**2) + ((yTwo - yOne)**2)
-    distance = math.sqrt(firstMath)
-    roundedDistance = round(distance, 2)
-    print(roundedDistance)
+    def getLimit(self):
+        limitPosition = self.canvas.coords(self.limit)
+        return limitPosition
 
-calculateDistance(8, 15, 10, 12)
+    def getLimit2(self):
+        limit2Position = self.canvas.coords(self.limit2)
+        return limit2Position
