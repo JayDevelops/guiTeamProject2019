@@ -1,6 +1,5 @@
-# Import our modules here
 import tkinter as tk
-
+import Syringe
 
 # Simple function that switches the button menu from Liqud buttons and Brake buttons (command located in switchButton)
 def switchB():
@@ -9,31 +8,33 @@ def switchB():
 def switchL():
     liquidButtonFrame.tkraise()
 
+def move():
+    return "Hello world"
 
 # mainWindow configurations
-mainWindow = tk.Tk()  # Initialized window in mainWindow variable
+mainWindow = tk.Tk()  # Initializes window in mainWindow variable
 mainWindow.title("Speed Wheel")  # Named the program Speed Wheel
-mainWindow.configure(background="#121212")   # Made mainWindow have a black background
+mainWindow.configure(background="#121212")  # Made mainWindow have a black background
 mainWindow.geometry("1280x720")  # This sets the window to be 720p
 mainWindow.resizable(0, 0)  # This makes the window not resizable
 
 # mainMenu configurations
 mainMenu = tk.Menu(mainWindow)   # Set a new menu tab named mainMenu to mainWindow
 mainWindow.config(menu=mainMenu)  # Added the mainMenu to the mainWindow
-optionMenu = tk.Menu(mainMenu)   # Added another a menu in the mainMenu stored in optionMenu (This works a lot like frames)
-mainMenu.add_cascade(label="Options", menu=optionMenu)   # Adds button group called Options in mainMenu
+optionMenu = tk.Menu(mainMenu)  # Added another a menu in the mainMenu stored in optionMenu (This works a lot like frames)
+mainMenu.add_cascade(label="Options", menu=optionMenu)  # Adds button group called Options in mainMenu
 optionMenu.add_command(label="Option 1")  # Adds a menu button called Option 1 (this can be changed later)
 optionMenu.add_command(label="Option 2")  # Adds a menu button called Option 2 (this can be changed later)
-optionMenu.add_separator()  # Adds a line separator to the option menu
+optionMenu.add_separator()  # This adds a line separator to the option menu
 optionMenu.add_command(label='Exit', command=mainWindow.destroy)  # This adds a button in the menu that exits the program
 
 
 # Frame configurations
-syringeFrame = tk.Frame(mainWindow)    # This frame contains the syringe model
-syringeFrame.pack(side=tk.RIGHT)    # This unpacks the main syringe frame
+syringeFrame = tk.Frame(mainWindow)  # This frame contains the syringe model
+syringeFrame.pack(side=tk.RIGHT)  # This unpacks the main syringe frame
 
-interactFrame = tk.Frame(mainWindow)    # This frame is a parent frame and contains the buttons and the wheel model
-interactFrame.pack(side=tk.RIGHT)   # This unpacks the interact parent frame
+interactFrame = tk.Frame(mainWindow)  # This frame is a parent frame and contains the buttons and the wheel model
+interactFrame.pack(side=tk.RIGHT)  # This unpacks the interact parent frame
 
 buttonFrame = tk.Frame(interactFrame)  # This frame is a child frame and it contains the buttons
 buttonFrame.pack()  # This unpacks the button frame
@@ -44,26 +45,20 @@ brakeButtonFrame.grid(row=0, column=0)  # This unpacks the brake button frame
 liquidButtonFrame = tk.Frame(buttonFrame)  # This frame contains the buttons for the iquids
 liquidButtonFrame.grid(row=0, column=0)  # This unpacks the liquid button frame
 
-wheelFrame = tk.Frame(interactFrame)  # This frame contains the wheel model
-wheelFrame.pack()   # This unpacks the wheel model frame
 
+wheelFrame = tk.Frame(interactFrame)  # This frame contains the wheel model
+wheelFrame.pack()  # This unpacks the wheel model frame
+
+# This creates a new canvas that contains the syringe model
 syringeCanvas = tk.Canvas(syringeFrame, height=700, width=400, bd=0)  # This creates a new canvas that contains the syringe model
 syringeCanvas.pack()  # This unpacks the syringe model
 
-wheelCanvas = tk.Canvas(wheelFrame, height=650, width=900)
-wheelCanvas.pack()
+# This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
+Syringe.syringe(syringeCanvas)
 
-
-# Class properties
-head = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, fill="white")  # This calls the syringe class through the Syringe.py file and creates the pump model in the syringeCanvas
-Syringe.syringe(syringeCanvas)  # Creates a new Syringe object from Syringe.py
-
-
-def move():
-    syringe.move(head, 0, 10)
 
 # Liquid Button Properties
-syrupButton = tk.Button(liquidButtonFrame, width=10, text="Syrup", command=move)
+syrupButton = tk.Button(liquidButtonFrame, width=10, text="Syrup")
 syrupButton.pack(side=tk.LEFT)
 
 oilButton = tk.Button(liquidButtonFrame, width=10, text="Motor Oil")
@@ -95,6 +90,5 @@ foilButton.pack(side=tk.LEFT)
 switchButtonB = tk.Button(brakeButtonFrame, width=10, text="Switch", command=switchL)
 switchButtonB.pack(side=tk.LEFT)
 
-
-# Loops the main window
+# Set the mainWindow on the loop
 mainWindow.mainloop()
