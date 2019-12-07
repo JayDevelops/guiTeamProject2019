@@ -15,12 +15,44 @@ spongeColor = "#e6e600"
 foilColor = "#b3b3b3"
 
 
+# Speed constants of the liquids
+
+syrupSpeed = 2
+oilSpeed = 4
+waterSpeed = 6
+alcoholSpeed = 8
+
+
 # Simple function that switches the button menu from Liqud buttons and Brake buttons (command located in switchButton)
 def switchB():
     brakeButtonFrame.tkraise()
 
 def switchL():
     liquidButtonFrame.tkraise()
+
+
+# Liquid button functions (chooses the color)
+
+def syrup():
+    global color 
+    color = syrupColor
+
+def oil():
+    global color
+    color = oilColor
+
+def water():
+    global color
+    color = waterColor
+
+def alcohol():
+    global color 
+    color = alcoholColor
+
+def changeColor():
+    global color
+    liquidColor = color
+    return liquidColor
 
 # mainWindow configurations
 mainWindow = tk.Tk()    # initialized window in mainWindow variable
@@ -69,7 +101,7 @@ wheelCanvas.pack()
 
 
 # This is the limit that the pump will go up to but not pass
-backLimit = syringeCanvas.create_rectangle(10, 365, 150, 385, width=1, outline= "#121212", fill="#121212")
+backLimit = syringeCanvas.create_rectangle(10, 362, 150, 382, width=1, outline= "#121212", fill="#121212")
 frontLimit = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, outline= "#121212", fill="#121212")
 
 # Class properties
@@ -78,6 +110,7 @@ pump = Syringe.pump(syringeCanvas, backLimit, frontLimit)   # This creates a pum
 
 
 liquid = Liquid.liquid(syringeCanvas, waterColor, pump)
+
 
 syringe = Syringe.syringe(syringeCanvas)      # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
 
@@ -102,16 +135,16 @@ pumpResetButtonL.pack(side=tk.LEFT)
 pumpButtonL = tk.Button (liquidButtonFrame, width=10, text="Pump", command=pumpMove)
 pumpButtonL.pack(side=tk.LEFT)
 
-syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup")
+syrupButton = tk.Button (liquidButtonFrame, width=10, text="Syrup", command=syrup)
 syrupButton.pack(side=tk.LEFT)
 
-oilButton = tk.Button (liquidButtonFrame, width=10, text="Motor Oil")
+oilButton = tk.Button (liquidButtonFrame, width=10, text="Motor Oil", command=oil)
 oilButton.pack(side=tk.LEFT)
 
-waterButton = tk.Button (liquidButtonFrame, width=10, text="Water")
+waterButton = tk.Button (liquidButtonFrame, width=10, text="Water", command=water)
 waterButton.pack(side=tk.LEFT)
 
-alcoholButton = tk.Button (liquidButtonFrame, width=10, text="Alcohol")
+alcoholButton = tk.Button (liquidButtonFrame, width=10, text="Alcohol", command=alcohol)
 alcoholButton.pack(side=tk.LEFT)
 
 switchButtonL = tk.Button (liquidButtonFrame, width=10, text="Switch", command=switchB)
@@ -139,7 +172,6 @@ foilButton.pack(side=tk.LEFT)
 
 switchButtonB = tk.Button (brakeButtonFrame, width=10, text="Switch", command=switchL)
 switchButtonB.pack(side=tk.LEFT)
-
 
 
 mainWindow.mainloop()       # set the mainWindow on the loop

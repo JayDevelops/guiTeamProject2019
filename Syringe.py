@@ -22,9 +22,9 @@ class pump:
     def move(self):
         if (not(self.canvas.coords(self.head) == self.canvas.coords(self.limit))):
             pumpMove = self.canvas.after(10,self.move)
-            self.canvas.move(self.head, 0, 5)
-            self.canvas.move(self.arm, 0, 5)
-            self.canvas.move(self.handle, 0, 5)
+            self.canvas.move(self.head, 0, 2)
+            self.canvas.move(self.arm, 0, 2)
+            self.canvas.move(self.handle, 0, 2)
             startPosition = self.canvas.coords(self.head)
             endPosition = self.canvas.coords(self.limit)
             if (startPosition == endPosition):
@@ -35,9 +35,9 @@ class pump:
     def reset(self):
         if (not(self.canvas.coords(self.head) == self.canvas.coords(self.limit2))):
             pumpMove = self.canvas.after(10,self.reset)
-            self.canvas.move(self.head, 0, -5)
-            self.canvas.move(self.arm, 0, -5)
-            self.canvas.move(self.handle, 0, -5)
+            self.canvas.move(self.head, 0, -2)
+            self.canvas.move(self.arm, 0, -2)
+            self.canvas.move(self.handle, 0, -2)
             startPosition = self.canvas.coords(self.head)
             endPosition = self.canvas.coords(self.limit2)
             if (startPosition == endPosition):
