@@ -6,7 +6,7 @@ import Liquid
 # colors for liquids and brake types
 oilColor = "#663300"
 syrupColor = "#331a00"
-waterColor = "#e6ffff"
+waterColor = "#ddffff"
 alcoholColor = "#f2f2f2"
 
 sandPaperColor = "#cc2900"
@@ -31,28 +31,6 @@ def switchL():
     liquidButtonFrame.tkraise()
 
 
-# Liquid button functions (chooses the color)
-
-def syrup():
-    global color 
-    color = syrupColor
-
-def oil():
-    global color
-    color = oilColor
-
-def water():
-    global color
-    color = waterColor
-
-def alcohol():
-    global color 
-    color = alcoholColor
-
-def changeColor():
-    global color
-    liquidColor = color
-    return liquidColor
 
 # mainWindow configurations
 mainWindow = tk.Tk()    # initialized window in mainWindow variable
@@ -101,7 +79,7 @@ wheelCanvas.pack()
 
 
 # This is the limit that the pump will go up to but not pass
-backLimit = syringeCanvas.create_rectangle(10, 362, 150, 382, width=1, outline= "#121212", fill="#121212")
+backLimit = syringeCanvas.create_rectangle(10, 418, 150, 438, width=1, outline= "#121212", fill="#121212")
 frontLimit = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, outline= "#121212", fill="#121212")
 
 # Class properties
@@ -109,7 +87,7 @@ frontLimit = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, outline= "
 pump = Syringe.pump(syringeCanvas, backLimit, frontLimit)   # This creates a pump object and stores it into pump 
 
 
-liquid = Liquid.liquid(syringeCanvas, waterColor, pump)
+liquid = Liquid.liquid(syringeCanvas, pump)
 
 
 syringe = Syringe.syringe(syringeCanvas)      # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
@@ -123,6 +101,29 @@ def pumpMove():
 def reset():
     pump.reset()
     liquid.reset()
+
+
+# Liquid button functions (chooses the color)
+
+def syrup():
+    liquid.setLiquidColor(syrupColor)
+    liquid.setLiquidSpeed(syrupSpeed)
+    pump.setPumpSpeed(syrupSpeed)
+
+def oil():
+    liquid.setLiquidColor(oilColor)
+    liquid.setLiquidSpeed(oilSpeed)
+    pump.setPumpSpeed(oilSpeed)
+
+def water():
+    liquid.setLiquidColor(waterColor)
+    liquid.setLiquidSpeed(waterSpeed)
+    pump.setPumpSpeed(waterSpeed)
+
+def alcohol():
+    liquid.setLiquidColor(alcoholColor)
+    liquid.setLiquidSpeed(alcoholSpeed)
+    pump.setPumpSpeed(alcoholSpeed)
 
 
 # limit cordinate [10.0, 365.0, 150.0, 385.0]
