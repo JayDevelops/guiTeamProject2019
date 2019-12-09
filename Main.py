@@ -73,16 +73,17 @@ backLimit = syringeCanvas.create_rectangle(10, 365, 150, 385, width=1, outline="
 frontLimit = syringeCanvas.create_rectangle(10, 10, 150, 30, width=1, outline="#121212", fill="#121212")
 
 # Class properties
-
 pump = Syringe.pump(syringeCanvas, backLimit, frontLimit)  # This creates a pump object and stores it into pump
 
 
+# INITIALIZE LIQUID OBJECTS HERE
 liquid = Liquid.liquid(syringeCanvas, waterColor, pump)
 
 syringe = Syringe.syringe(syringeCanvas)  # This calls the syringe class through the Syringe.py file and creates the syringe model in the syringeCanvas
 
+syrupLiquid = Liquid.oilLiquid(syringeCanvas, syrupColor, pump)
 
-# user defined functions for the tkinter buttons
+# COMMANDS HERE: User defined functions for the tkinter buttons
 def pumpMove():
     pump.move()
     liquid.move()
@@ -91,8 +92,11 @@ def reset():
     pump.reset()
     liquid.reset()
 
+def syrupMove():
+    pump.move()
+    syrupLiquid.move()
 
-# limit cordinate [10.0, 365.0, 150.0, 385.0]
+# IMPORTANT: Limit cordinate [10.0, 365.0, 150.0, 385.0]
 
 
 # Liquid Button Properties
@@ -102,7 +106,7 @@ pumpResetButtonL.pack(side=tk.LEFT)
 pumpButtonL = tk.Button(liquidButtonFrame, width=10, text="Pump", command=pumpMove)
 pumpButtonL.pack(side=tk.LEFT)
 
-syrupButton = tk.Button(liquidButtonFrame, width=10, text="Syrup")
+syrupButton = tk.Button(liquidButtonFrame, width=10, text="Syrup", command=syrupMove)
 syrupButton.pack(side=tk.LEFT)
 
 oilButton = tk.Button(liquidButtonFrame, width=10, text="Motor Oil")

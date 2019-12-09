@@ -109,7 +109,7 @@ class alcoholLiquid(liquid):
 
 
 # This is a syrup subclass which inherits everything, methods and init, from liquid
-class syrupColor(liquid):
+class syrupLiquid(liquid):
     def move(self):
         # This oil liquid will move slower
         if(not(self.pump.getHead() == self.pump.getLimit())):
