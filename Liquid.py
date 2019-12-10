@@ -31,9 +31,13 @@ class liquid:
                 self.canvas.after_cancel(liquidMove)
         else:
             pass
-        
+
     def setLiquidSpeed(self, speed):
         self.liquidSpeed = speed
 
     def setLiquidColor(self, color):
+        self.canvas.itemconfig(self.model, fill=color)
+
+    def changeSpeed(self, newSpeed):
+        self.liquidSpeed = newSpeed
         self.canvas.itemconfig(self.model, fill= color)

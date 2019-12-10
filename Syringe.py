@@ -13,7 +13,7 @@ class syringe:
 class pump:
     def __init__(self, canvas, limit, limit2):
         self.pumpSpeed = 2
-        
+
         self.canvas = canvas
         self.limit = limit
         self.limit2 = limit2
@@ -24,7 +24,7 @@ class pump:
 
     def move(self):
         if (not(self.canvas.coords(self.head) == self.canvas.coords(self.limit))):
-            pumpMove = self.canvas.after(10,self.move)
+            pumpMove = self.canvas.after(10, self.move)
             self.canvas.move(self.head, 0, self.pumpSpeed)
             self.canvas.move(self.arm, 0, self.pumpSpeed)
             self.canvas.move(self.handle, 0, self.pumpSpeed)
@@ -34,10 +34,10 @@ class pump:
                 self.canvas.after_cancel(pumpMove)
         else:
             pass
-    
+
     def reset(self):
         if (not(self.canvas.coords(self.head) == self.canvas.coords(self.limit2))):
-            pumpMove = self.canvas.after(10,self.reset)
+            pumpMove = self.canvas.after(10, self.reset)
             self.canvas.move(self.head, 0, -self.pumpSpeed)
             self.canvas.move(self.arm, 0, -self.pumpSpeed)
             self.canvas.move(self.handle, 0, -self.pumpSpeed)
@@ -47,7 +47,7 @@ class pump:
                 self.canvas.after_cancel(pumpMove)
         else:
             pass
-    
+
     def getHead(self):
         headPosition = self.canvas.coords(self.head)
         return headPosition
