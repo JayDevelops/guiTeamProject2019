@@ -3,7 +3,7 @@ import Syringe
 import Liquid
 
 
-# Colors for liquids and brake types
+# colors for liquids and brake types
 oilColor = "#663300"
 syrupColor = "#331a00"
 waterColor = "#ddffff"
@@ -122,7 +122,7 @@ def alcohol():
     pump.setPumpSpeed(alcoholSpeed)
 
 
-# Limit cordinate [10.0, 365.0, 150.0, 385.0]
+# limit cordinate [10.0, 365.0, 150.0, 385.0]
 
 
 # Liquid Button Properties

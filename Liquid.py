@@ -40,3 +40,4 @@ class liquid:
 
     def changeSpeed(self, newSpeed):
         self.liquidSpeed = newSpeed
+        self.canvas.itemconfig(self.model, fill= color)
