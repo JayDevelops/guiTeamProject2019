@@ -154,13 +154,13 @@ switchButtonL.pack(side=tk.LEFT)
 def sandPaperBraker():
     liquid.changeSpeed(-2)
 
-def towelBraker:
+def towelBraker():
     liquid.changeSpeed(-4)
 
-def spongeBraker:
+def spongeBraker():
     liquid.changeSpeed(-6)
 
-def aluminumBraker:
+def aluminumBraker():
     liquid.changeSpeed(-8)
 
 pumpResetButtonB = tk.Button(brakeButtonFrame, width=10, text="Reset", command=reset)
